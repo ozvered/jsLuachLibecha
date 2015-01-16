@@ -1,0 +1,163 @@
+
+<!doctype html>
+<html>
+    <head>
+         <link href="files/css/bootstrap.css" rel="stylesheet" type="text/css" />
+         <link href="files/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+
+        <title> test inheri</title>
+        <script src='Day.js'> </script>
+        <script src='Month.js'> </script> 
+        <script src='MonthCollection.js'> </script> 
+        <script src='ShaotZemaniot.js'> </script> 
+        <script src='CREATEyear.js'> </script>
+        <script src='Luach_Libecha.js'> </script>
+        
+<style>
+td {white-space: pre-wrap;}
+</style>
+
+       
+    </head>
+    <body id="main" dir=ltr>
+      
+        <table id="myTable" border="1" bordercolor="#c86260" cellspacing="0" cellpadding="0">
+        </table>
+    </body> 
+    <script> 
+            function cellPush(m,d){
+                var item
+                var mIdx=(m<7?m:(m+1))
+                eval("item=data['"+m+"_"+d+"']");
+                alert(item.hilula+'\r\n'+item.limud);
+
+            }
+        
+
+            var argv = "-h5774";
+            var hFlag = (argv.indexOf("-h") > -1) ? 1 : 0;
+            
+            //win1.FlowDirection = (FlowDirection)hFlag;
+            var tbl=document.getElementById("myTable");
+            var myYear=CREATEyear1(argv);
+            if(hFlag==1)document.getElementById("main").setAttribute("dir", "rtl");
+            var i=0;
+          //  win1.Title = myYear.hName+"/"+myYear.gName;
+             //---------------------------------------
+             var x,y,t,Month,d;
+             //---------------------------------------   
+            for (var m in myYear.MCArr[0].MArr)
+            if(myYear.MCArr[0].MArr[m].daysArr.length>0)
+            {
+                Month=myYear.MCArr[0].MArr[m];
+                //continue;    
+                /*
+                RowDefinition rd = new RowDefinition();
+                WrapPanel wp = new WrapPanel();
+                G1.RowDefinitions.Add(rd);
+                wp.Name = "w" + i.ToString();
+                */
+                x = document.createElement("TR");
+                x.setAttribute("id", "tr_"+i);
+                tbl.appendChild(x);
+                //----------------------------hMcol.MArr[Hm].gName
+                var EmName=Month.gName,HmName =(hFlag==1? Month.hebName:Month.engName);
+                y = document.createElement("TD");
+                    y.setAttribute("id", "td_h");
+                    t = document.createTextNode(HmName+'\n\r'+EmName.replace('-','-\n\r') );
+                    y.appendChild(t);
+                    document.getElementById("tr_"+i).appendChild(y);
+                //----------------------------
+                for (var dIDX in Month.daysArr)
+                {
+                    d=Month.daysArr[dIDX];
+                    /*
+                    Button bt = new Button();
+                    if (d.GetType().ToString()=="WpfApplication1.sDay")
+                    {
+                        bt.BorderBrush = Brushes.Red;
+                        bt.ToolTip = ((sDay)d).wParasha;
+                    }
+                    else if (d.GetType().ToString()=="WpfApplication1.moedDay")
+                    {
+                        bt.BorderBrush = Brushes.DarkOrange;
+                    }
+                    else if (d.spTitle!=null)
+                    {
+                        bt.BorderBrush = Brushes.DarkGreen;
+                    }
+                    StackPanel sp = new StackPanel();
+                    TextBlock tbH = new TextBlock();
+                    tbH.Text = d.hDate;
+                    sp.Children.Add(tbH);
+                    TextBlock tbWD = new TextBlock();
+                    tbWD.Text = d.wdDate;
+                    sp.Children.Add(tbWD);
+                    TextBlock tbG = new TextBlock();
+                    tbG.Text = d.gDate;
+                    sp.Children.Add(tbG);
+
+                    if (d.spTitle != null) bt.ToolTip = ((bt.ToolTip!=null)?bt.ToolTip+" ":"")+ d.spTitle;
+                    if (d.GetType().ToString() == "WpfApplication1.moedDay"||d.GetType().ToString()=="WpfApplication1.sDay")
+                    {
+                        bt.ToolTip =(hFlag==1? (bt.ToolTip + " זמן כניסה-" + ((moedDay)d).kTime + " זמן יציאה-" + ((moedDay)d).yTime):
+                             (bt.ToolTip + " Enter time-" + ((moedDay)d).kTime + " Exit time-" + ((moedDay)d).yTime));
+                    }
+                    bt.Content = sp;
+                    bt.MinWidth = 20;
+                    wp.Children.Add(bt);
+                    */
+                    /*
+                    gregorianDate: "13"
+                    hDate: "כט"
+                    hDateNum: 29
+                    hebDate: "29"
+                    specialTitle: ""
+                    weekDay: "ה"
+                    */
+                    y = document.createElement("TD");
+                    y.setAttribute("id", "td_"+dIDX);
+                    y.setAttribute("onClick", "cellPush("+(parseInt(m))+","+(parseInt(dIDX)+1)+")");
+                    t = document.createTextNode(d.hDate +'\n\r'+d.weekDay +'\n\r'+d.gregorianDate );
+                    y.appendChild(t);
+                    document.getElementById("tr_"+i).appendChild(y);
+                }
+                /*
+                StackPanel spT = new StackPanel();
+                TextBlock tbH1 = new TextBlock();
+                tbH1.Text =(hFlag==1? m.hName:m.eName);
+                spT.Children.Add(tbH1);
+                string gTitle=((hMonth)m).gName;
+                if (gTitle.IndexOf("-") > 0)
+                {
+                    TextBlock tbG1 = new TextBlock();
+                    tbG1.Text = gTitle.Split('-')[0];
+                    spT.Children.Add(tbG1);
+                    TextBlock tbG2 = new TextBlock();
+                    tbG2.Text = "-"+gTitle.Split('-')[1];
+                    spT.Children.Add(tbG2);
+                }
+                else 
+                {
+                    TextBlock tbG1 = new TextBlock();
+                    tbG1.Text = gTitle;
+                    spT.Children.Add(tbG1);
+                }
+                
+
+                spT.SetValue(Grid.RowProperty, i);
+                spT.SetValue(Grid.ColumnProperty, 0);
+                G1.Children.Add(spT);
+                
+
+                if (i % 2 == 0) wp.Background = spT.Background = (Brush)bc.ConvertFrom("#FFFFEBCD");//Brushes.BlanchedAlmond ;
+                wp.SetValue(Grid.RowProperty, i);
+                wp.SetValue(Grid.ColumnProperty, 1);
+                G1.Children.Add(wp);
+                */
+                i++;
+            }
+        
+
+ </script>
+</html>

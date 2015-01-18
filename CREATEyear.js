@@ -202,11 +202,11 @@ var     hName='',gName='',
   }
   if (hflag == 1)
   {
-      hMcol.MArr[6].hName = (kvia >= 30) ? "אדר ב" : "אדר";
+      hMcol.MArr[6].hebName = (kvia >= 30) ? "אדר ב" : "אדר";
   }
   else
   {
-      hMcol.MArr[6].eName = (kvia >= 30) ? "Adar II" : "Adar";
+      hMcol.MArr[6].engName = (kvia >= 30) ? "Adar II" : "Adar";
   }
   hMcol.MArr[1].Mlength = (kvia % 30 == 2) ? 30 : 29;
   hMcol.MArr[2].Mlength = (kvia % 30 == 0) ? 29 : 30;
@@ -244,7 +244,7 @@ var     hName='',gName='',
       if (Gl - Gd >= Hl - 1)
       {
  
-          gMonthTitle = (hflag==1 ? gMcol.MArr[Gm].hName : gMcol.MArr[Gm].eName);
+          gMonthTitle = (hflag==1 ? gMcol.MArr[Gm].hebName : gMcol.MArr[Gm].engName);
 
           for (Hd = 1; Hd <= Hl; Hd++)
           {
@@ -325,6 +325,7 @@ var     hName='',gName='',
         {
                 var currDay = (myYear.MCArr[0]).MArr[month].daysArr[Hd];
                 currDay.gregorianDate = Gd+'';
+                currDay.gregorianMonth = Gm;
                 var hebYear=(3760+Gy);
                 if(Gm>7 && month<4)Gy=Gy-1;
                 Gm = Gm + 1;//-->(1:12) 

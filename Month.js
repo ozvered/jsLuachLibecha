@@ -32,7 +32,7 @@ myNS.gMonth = function (seName, shName, eName, hName ) { // Inherits Month
     var _shortEngName=seName;
 
     //the next code inherits DAY ...
-    var SuperMonth = new myNS.Month(hName, eName);
+    var SuperMonth = new myNS.Month(eName, hName);
     this.prototype = SuperMonth.prototype;
     for (var i in SuperMonth) {
         this[i] = SuperMonth[i];

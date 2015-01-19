@@ -19,25 +19,31 @@
 td {white-space: pre-wrap;}
 .modal-body {
 border-bottom: 1px solid #eee;
-padding: 5px;
+padding: 0px;
 }
 .modal-footer {
 border-top: none;
 }
-span {
-display: none;
+button.close {
+position: relative;
+left: -99%;
 }
 h4 {
 font-size: 16px;
+}
+div#myModal {
+top: 5px;
 }
 </style>
 
        
     </head>
     <body id="main" dir=ltr>
-      
+<div class="span1"></div>
+<div class="span10 offset1">
         <table id="myTable" border="1" bordercolor="#c86260" cellspacing="0" cellpadding="0">
         </table>
+</div>
     </body> 
     <script> 
             function cellPush(m,d,hm,wd){

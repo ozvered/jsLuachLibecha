@@ -7,13 +7,14 @@ myNS.Day = function (hDate, wdDate, gDate) {
   var _weekDay = wdDate;
   var _specialTitle = '';
   var _gregorianMonth = 0;
- 
+  var _gregorianYear = 0;
   return { // public parts (aka interface)
     hebDate : _hebDate,
     weekDay : _weekDay,
     gregorianDate : _gregorianDate,
 	gregorianMonth : _gregorianMonth,
-    specialTitle : _specialTitle
+    specialTitle : _specialTitle,
+	gregorianYear : _gregorianYear
   };
  
 };

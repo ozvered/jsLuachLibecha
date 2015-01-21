@@ -5,7 +5,7 @@ myNS.H_G_year = function () {
   var _MCArr=[];
   var _headF = 0;
   var _lengthF = 0;
-  var _hName = "", _gName = "";
+  var _hName = "", _gName = 0;
 
   var _Add = function (MonthCollection) {
     _MCArr.push(MonthCollection);
@@ -114,6 +114,8 @@ var     hName='',gName='',
  {
      hName = "Calendar for " + year;
  }
+ 
+myYear.gName=year;
 
  g = (jflag != 1 && year >= 5343) ? 1 : 0;
 
@@ -326,6 +328,8 @@ var     hName='',gName='',
                 var currDay = (myYear.MCArr[0]).MArr[month].daysArr[Hd];
                 currDay.gregorianDate = Gd+'';
                 currDay.gregorianMonth = Gm;
+				currDay.gregorianYear = Gy-(Gm>month?1:0);
+				
                 var hebYear=(3760+Gy);
                 if(Gm>7 && month<4)Gy=Gy-1;
                 Gm = Gm + 1;//-->(1:12) 

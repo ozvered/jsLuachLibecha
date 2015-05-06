@@ -1,205 +1,28 @@
-
-<!doctype html>
-<html>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title id="t1"></title>
-    <head>
-         <link href="files/css/bootstrap.css" rel="stylesheet" type="text/css" />
-         <link href="files/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
-
-        <title> test inheri</title>
-        <script src='Day.js'> </script>
-        <script src='Month.js'> </script> 
-        <script src='MonthCollection.js'> </script> 
-        <script src='ShaotZemaniot.js'> </script> 
-        <script src='CREATEyear.js'> </script>
-        <script src='Luach_Libecha.js'> </script>
-        <script src='GENERATEll.js'> </script>
-<style>
-td {white-space: pre-wrap;}
-.modal-body {
-border-bottom: 1px solid #eee;
-padding: 0px;
-}
-.modal-footer {
-border-top: none;
-}
-button.close {
-position: relative;
-left: -99%;
-}
-h4 {
-font-size: 16px;
-}
-div#myModal, div#modal-tbl {
-top: 5px;
-}
-div#myModal {
-margin-left: -11px;
-margin-right: -10px;
-margin-top: -5px;
-}
-table#myTable {
-margin-right: 10px;
-}
-div#modal-tbl {
-background-color: beige;
-top: 5px;
-
-}
-.modal-header {
-padding: 0px 15px;
-}
-body {
-    line-height: 15px;  
-}	
-</style>
-
-       
-    </head>
-<body id="main" dir=ltr>
-<div id="modal-tbl"  class="modal">
-        <table id="myTable" border="1" bordercolor="#c86260" cellspacing="0" cellpadding="0">
-        </table>
+<!DOCTYPE html>
+<html dir="rtl">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css"  rel="stylesheet" href="css/animation.css" >
+</head>
+<body>
+<div class="mobile">This is a mobile application incubator</div>
+<div class="outer1" style="height: 50vh;" >
+    <div class="inner b1b">'</div>
+    <div class="inner b2b">'</div>
 </div>
-    </body> 
- <!-- Button trigger modal -->
-<button id="mybutton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none;">
-  Lauach Libecha modal
-</button>
+<br>
+<fieldset>
+    <legend>
+        לחץ על האפליקציה שברצונך לארח
+    </legend>
+    <a href="MsgsList.html">מסר טרמפ </a><br>
+    <a href="indexClock.html"> שעון מעורר</a><br>
+    <a href="indexLuach.html"> לוח לבך</a>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
- <h4 class="modal-title" id="myModalLabel">לוח לבך - לעשות נחת רוח לרבש"ע ולע"נ המסכם הרב דן שמואל בן עזריאל זצ"ל</h4>
-      </div>
-      <div id="modal-body-outer">
-		  <div class="modal-body">
-		   
-		  </div>
-      </div>
-     
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="files/js/jquery.min.js"></script>
-<script src="files/js/bootstrap.min.js"></script>
-<script> 
-		function cellPush(ChebYear, CGy, CGm, CGd, myYear){
-			
-			var dCGreg=new Date(CGy, CGm,CGd)
-			var retArr;
-			retArr=GENERATEllArr(dCGreg, ChebYear, 8,myYear);
-		
-			var Set = $('#modal-body-outer');
-			var i=0;
-			var modal_body = Set.find('.modal-body');
-			modal_body[0].id = "body" + (i);
-			var modal_body_holder = Set;
-			var modal_body_inner = modal_body[0].outerHTML;
-			Set.html("");
+</fieldset>
 
-			 //===========================
-			for(var i=0;i<retArr.length;i++)
-			{
-					modal_body_holder.append(modal_body_inner);
-					modal_body = Set.find('.modal-body');
-					modal_body[i].id = "body" + (i);
-					modal_body[i].innerHTML=(retArr[i]);	
-			}
-			
-			 //===========================
-			document.getElementById("mybutton").click();
-		}
-		
-		var dCGreg=new Date();      
-		var CGy=dCGreg.getFullYear();// Current Gregorian
-		
-		var ChebYear=(3760+CGy);// Current hebrew Year
-		
-		var argv = "-h"+ChebYear;
-		
-		var myYear=CREATEyear1(argv);
-		var GEOFhebYear=new Date(CGy, myYear.MCArr[0].MArr[12].daysArr[28].gregorianMonth, 
-		parseInt(myYear.MCArr[0].MArr[12].daysArr[28].gregorianDate));//Gregorian date of calculated heb year
-		if(GEOFhebYear-dCGreg<0)// if Current date after end of supposed heb year so jump one heb year forward
-		{
-			ChebYear++;
-			argv = "-h"+ChebYear;
-			myYear=CREATEyear1(argv);
-		}
-		cellPush(ChebYear,CGy,dCGreg.getMonth(),dCGreg.getDate(),myYear);
-		
-		var tbl=document.getElementById("myTable");
-		var hFlag = (argv.indexOf("-h") > -1) ? 1 : 0;
-		if(hFlag==1)document.getElementById("main").setAttribute("dir", "rtl");
-		var i=0;
-		document.getElementById("t1").innerText = "לוח לבך לשנת"+" "+alef(ChebYear);
-		 //---------------------------------------
-		 var x,y,t,Month,d;
-		 //---------------------------------------   
-		for (var m in myYear.MCArr[0].MArr)
-		if(myYear.MCArr[0].MArr[m].daysArr.length>0)
-		{
-			Month=myYear.MCArr[0].MArr[m];
-			x = document.createElement("TR");
-			x.setAttribute("id", "tr_"+i);
-			tbl.appendChild(x);
-			//----------------------------
-			var EmName=Month.gName,HmName =(hFlag==1? Month.hebName:Month.engName);
-			y = document.createElement("TD");
-				y.setAttribute("id", "td_h");
-				t = document.createTextNode(HmName+'\n\r'+EmName.replace('-','-\n\r') );
-				y.appendChild(t);
-				document.getElementById("tr_"+i).appendChild(y);
-			//----------------------------
-			for (var dIDX in Month.daysArr)
-			{
-				d=Month.daysArr[dIDX];
-				var ToolTip="";
-				y = document.createElement("TD");
-				if (d.hasOwnProperty('shabatTitle'))// sDay
-				{
-					y.style.backgroundColor = "Yellow";
-					ToolTip = d.shabatTitle;
-				}
-				else if (d.hasOwnProperty('inTime'))// moedDay
-				{
-					y.style.backgroundColor = "Orange";
-				}
-				else if (d.specialTitle!="")
-				{
-					y.style.backgroundColor = "LightGreen";
-				}
-				
-				if (d.specialTitle!="")ToolTip = ((ToolTip!="")?ToolTip+" ":"")+ d.specialTitle;
-				if (d.hasOwnProperty('inTime'))
-				{
-					ToolTip =(hFlag==1? (ToolTip + " זמן כניסה-" + d.inTime + " זמן יציאה-" + d.outTime):
-						 (ToolTip + " Enter time-" + d.inTime + " Exit time-" + d.outTime));
-				}
 
-				y.setAttribute("id", "td_"+gDay(d.weekDay)+"_"+gMonth(d.gregorianMonth)+"_"+d.gregorianDate);
-			    y.setAttribute("onClick", "cellPush("+ChebYear+","+d.gregorianYear+","+gMonth(d.gregorianMonth)+","+d.gregorianDate+")");
-				y.setAttribute("Title", ToolTip);
-				t = document.createTextNode(d.hDate +'\n\r'+d.weekDay +'\n\r'+d.gregorianDate );
-				y.appendChild(t);
-				document.getElementById("tr_"+i).appendChild(y);
-			}
 
-			i++;
-		}
-
-//var retHeb = GregToHeb(dGreg);
-</script>
-
+</body>
 </html>
